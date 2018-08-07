@@ -1,10 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="com.tang.lightrefresh.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <Button
+                android:id="@+id/btn_view_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="普通view测试（View）"
+                />
 
+            <Button
+                android:id="@+id/btn_banner_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="左右滚动轮播测试（ViewPager）"
+                />
+
+            <Button
+                android:id="@+id/btn_scrollerview_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上下滚动测试（ScrollerView）"
+                />
+            <Button
+                android:id="@+id/btn_recycler_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上下滚动测试（RecyclerView）"
+                />
+            <Button
+                android:id="@+id/btn_webview_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上下滚动测试（WebView）"
+                />
+            <Button
+                android:id="@+id/btn_rv_vp_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="recycler包含viewpager"
+                />
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

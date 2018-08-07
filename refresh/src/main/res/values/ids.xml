@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="cb_item_tag" type="id"></item>
+    <item name="rl_login_proving" type="id"></item>
+    <item name="rl_login_password" type="id"/>
+</resources>

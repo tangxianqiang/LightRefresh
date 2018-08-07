@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">refresh</string>
+    <string name="refresh_drag">下拉刷新</string>
+    <string name="refresh_release">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_completed">刷新完成</string>
+
+    <string name="load_more">加载更多</string>
+    <string name="loading">正在加载...</string>
+    <string name="load_completed">加载完成</string>
+
+</resources>

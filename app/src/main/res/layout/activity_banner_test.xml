@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fl_root"
+    >
+    <com.blcodes.views.refresh.BounceLayout
+        android:id="@+id/bl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eee"
+        >
+        <com.blcodes.views.lightrefresh.banner.ConvenientBanner
+            android:id="@+id/cb"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"></com.blcodes.views.lightrefresh.banner.ConvenientBanner>
+        <View
+            android:layout_marginTop="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            />
+
+    </com.blcodes.views.refresh.BounceLayout>
+</FrameLayout>

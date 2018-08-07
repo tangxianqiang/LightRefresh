@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.blcodes.views.refresh.BounceLayout
+        android:id="@+id/bl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eee"
+        >
+
+        <WebView
+            android:id="@+id/wv_test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>
+
+
+    </com.blcodes.views.refresh.BounceLayout>
+</FrameLayout>

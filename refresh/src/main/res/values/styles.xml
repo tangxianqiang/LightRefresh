@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--自定义圆形进度-->
+    <style name="Progress_circle_acting">
+        <item name="android:indeterminateDrawable">@drawable/ratate_progress_bar</item>
+        <item name="android:minWidth">20dp</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:maxWidth">60dp</item>
+        <item name="android:maxHeight">60dp</item>
+    </style>
+
+</resources>
