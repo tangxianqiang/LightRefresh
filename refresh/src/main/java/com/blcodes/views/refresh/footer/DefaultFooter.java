@@ -66,7 +66,9 @@ public class DefaultFooter extends BaseFooterView {
     @Override
     public void handlePull(float dragY) {
         totalOffset = dragY;
-        setTranslationY(dragY);
+        if (canTranslation) {
+            setTranslationY(dragY);
+        }
         if (status == FOOTER_LOADING) {//只要是正在加载
             return;
         }

@@ -66,7 +66,9 @@ public class DefaultHeader extends BaseHeaderView {
     @Override
     public void handleDrag(float dragY) {
         this.totalOffset = dragY;
-        setTranslationY(dragY);
+        if (canTranslation) {
+            setTranslationY(dragY);
+        }
         if (status == HEADER_REFRESHING) {//只要是正在刷新
             return;
         }

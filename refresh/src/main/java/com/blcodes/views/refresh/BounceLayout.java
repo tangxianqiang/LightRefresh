@@ -168,13 +168,21 @@ public class BounceLayout extends FrameLayout {
                 alwaysDispatch = false;
                 //再抬起手指时都需要判断是否显示footer、header(之前footer、header可能被拉出来需要刷新或者加载更多)
                 if(headerView != null && headerView.checkRefresh()){
-                    mScroller.startScroll(0,getScrollY(),0,-(getScrollY() + headerView.getHeaderHeight()),500);
-                    invalidate();
+                    if (disallowBounce) {
+                        bounceCallBack.startRefresh();
+                    }else{
+                        mScroller.startScroll(0,getScrollY(),0,-(getScrollY() + headerView.getHeaderHeight()),500);
+                        invalidate();
+                    }
                     break;
                 }
                 if(footerView!=null && footerView.checkLoading()){
-                    mScroller.startScroll(0,getScrollY(),0,-(getScrollY() - footerView.getFooterHeight()),500);
-                    invalidate();
+                    if (disallowBounce) {
+                        bounceCallBack.startLoadingMore();
+                    }else{
+                        mScroller.startScroll(0,getScrollY(),0,-(getScrollY() - footerView.getFooterHeight()),500);
+                        invalidate();
+                    }
                     break;
                 }
                 mScroller.startScroll(0,getScrollY(),0,-getScrollY(),500);
@@ -224,10 +232,9 @@ public class BounceLayout extends FrameLayout {
         }else {
             totalOffsetY = offsetY;
         }
-        if (disallowBounce) {//不允许拉动
-            totalOffsetY = 0;
+        if (!disallowBounce) {//不允许拉动
+            scrollTo(0, (int) -totalOffsetY);
         }
-        scrollTo(0, (int) -totalOffsetY);
         pointerChange = false;
         //在布局拉动的时候一定要将拉动的值传到header
         if (headerView != null) {
@@ -310,12 +317,18 @@ public class BounceLayout extends FrameLayout {
         this.headerView = headerView;
         if (headerView!=null) {
             headerView.setParent(parent);
+            if (disallowBounce) {
+                headerView.setCanTranslation(false);
+            }
         }
     }
     public void setFooterView(BaseFooterView footerView, ViewGroup parent) {
         this.footerView = footerView;
         if (footerView!=null) {
             footerView.setParent(parent);
+            if (disallowBounce) {
+                footerView.setCanTranslation(false);
+            }
         }
     }
 

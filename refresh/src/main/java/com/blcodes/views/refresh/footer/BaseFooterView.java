@@ -21,6 +21,7 @@ public abstract class BaseFooterView extends FrameLayout{
     public final static int FOOTER_RELEASE = 0x006;//释放加载更多
     public final static int FOOTER_LOADING = 0x007;//正在加载
     public final static int FOOTER_COMPLETED = 0x008;//加载完成
+    protected boolean canTranslation = true;
 
     public BaseFooterView(@NonNull Context context) {
         this(context,null);
@@ -46,4 +47,7 @@ public abstract class BaseFooterView extends FrameLayout{
     public abstract void LoadingCompleted();
     /*获得底部高度*/
     public abstract int getFooterHeight();
+    public void setCanTranslation(boolean canTranslation) {
+        this.canTranslation = canTranslation;
+    }
 }

@@ -22,6 +22,7 @@ public abstract class BaseHeaderView extends FrameLayout{
     public final static int HEADER_RELEASE = 0x002;//释放立即刷新
     public final static int HEADER_REFRESHING = 0x003;//正在刷新
     public final static int HEADER_COMPLETED = 0x004;//刷新完成
+    protected boolean canTranslation = true;
 
     public BaseHeaderView(Context context) {
         this(context,null);
@@ -50,4 +51,7 @@ public abstract class BaseHeaderView extends FrameLayout{
     /*自动加载*/
     public abstract void autoRefresh();
 
+    public void setCanTranslation(boolean canTranslation) {
+        this.canTranslation = canTranslation;
+    }
 }
