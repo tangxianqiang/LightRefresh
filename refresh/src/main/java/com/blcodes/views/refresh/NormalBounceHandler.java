@@ -4,6 +4,9 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ScrollView;
 
+/**
+ * 自定义弹性处理类，用于控制垂直滚动的子view和BounceLayout的冲突
+ */
 public class NormalBounceHandler implements BounceHandler {
 
     @Override

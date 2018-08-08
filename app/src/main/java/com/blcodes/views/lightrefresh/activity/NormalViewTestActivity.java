@@ -14,6 +14,10 @@ import com.blcodes.views.refresh.BounceCallBack;
 import com.blcodes.views.refresh.footer.DefaultFooter;
 import com.blcodes.views.refresh.header.DefaultHeader;
 
+/**
+ * 普通视图添加刷和加载更多
+ */
+
 public class NormalViewTestActivity extends Activity {
     private static final String TAG = "NormalViewTestActivity";
 
@@ -35,18 +39,18 @@ public class NormalViewTestActivity extends Activity {
         bounceLayout.setBounceCallBack(new BounceCallBack() {
             @Override
             public void startRefresh() {
-                Log.i(TAG, "startRefresh: ");
+                Log.i(TAG, "startRefresh: 模拟加载耗时");
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         bounceLayout.setRefreshCompleted();
                     }
-                },6000);
+                },2000);
             }
 
             @Override
             public void startLoadingMore() {
-                Log.i(TAG, "startLoadingMore: ");
+                Log.i(TAG, "startLoadingMore: 模拟加载耗时");
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

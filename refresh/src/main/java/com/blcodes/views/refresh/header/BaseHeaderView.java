@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 /**
+ * 下拉刷新的基类，继承该类可以实现不同样式的刷新头，但是基本的刷新过程不变，都是：
+ *      下拉--释放--加载（悬停）--回弹结束
  * 刷新头，一共有4种状态：
  *      a、下拉刷新
  *      b、释放立即刷新

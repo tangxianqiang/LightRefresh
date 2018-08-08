@@ -1,20 +1,20 @@
 ext {
     android = [
-            compileSdkVersion     : 27,
-            targetSdkVersion      : 27,
-            buildToolsVersion     : "27.0.3",
-            minSdkVersion  : 15,
-            applicationId  : 'com.blcodes.views.lightrefresh',
-            versionCode : 1,
-            versionName : "1.0"
+            compileSdkVersion: 28,
+            targetSdkVersion : 28,
+            buildToolsVersion: "28.0.0",
+            minSdkVersion    : 15,
+            applicationId    : 'com.blcodes.views.lightrefresh',
+            versionCode      : 1,
+            versionName      : "1.0"
     ]
     dependencies = [
-            "support-v4"           : 'com.android.support:support-v4:22.2.1',
-            "appcompat-v7"         : 'com.android.support:appcompat-v7:27+',
-            "junit"                 : 'junit:junit:4.12',
-            "espresso-core"        : 'com.android.support.test.espresso:espresso-core:3.0.2',
-            "constraint-layout"    : 'com.android.support.constraint:constraint-layout:1.1.2',
-            "runner"                : 'com.android.support.test:runner:1.0.2',
-            "recyclerview"         : 'com.android.support:recyclerview-v7:27+'
+            "support-v4"       : 'com.android.support:support-v4:28.0.0',
+            "appcompat-v7"     : 'com.android.support:appcompat-v7:28+',
+            "junit"            : 'junit:junit:4.12',
+            "espresso-core"    : 'com.android.support.test.espresso:espresso-core:3.0.2',
+            "constraint-layout": 'com.android.support.constraint:constraint-layout:1.1.2',
+            "runner"           : 'com.android.support.test:runner:1.0.2',
+            "recyclerview"     : 'com.android.support:recyclerview-v7:27+'
     ]
 }

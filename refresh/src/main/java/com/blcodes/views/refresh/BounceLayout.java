@@ -73,7 +73,7 @@ public class BounceLayout extends FrameLayout {
     /*孩子一旦得到事件后，不还给父亲*/
     private boolean alwaysDispatch;
     /*是否暂停回弹*/
-    private boolean bounceStopped;
+//    private boolean bounceStopped;
     /*刷新锁,防止同时回调多个刷新操作*/
     private volatile boolean lockBoolean;
 
@@ -162,7 +162,7 @@ public class BounceLayout extends FrameLayout {
             case MotionEvent.ACTION_CANCEL:
                 forceDrag = false;
                 alwaysDispatch = false;
-                //再抬起手指时都需要判断是否显示footer、header(之前footer、header可能被拉出来需要刷新或者加载更多了)
+                //再抬起手指时都需要判断是否显示footer、header(之前footer、header可能被拉出来需要刷新或者加载更多)
                 if(headerView != null && headerView.checkRefresh()){
                     mScroller.startScroll(0,getScrollY(),0,-(getScrollY() + headerView.getHeaderHeight()),500);
                     invalidate();
@@ -187,7 +187,7 @@ public class BounceLayout extends FrameLayout {
      */
     private boolean dispatchToChild(float movingY) {
         boolean moveDown = currentY < movingY;
-        if (getScrollY()!=0 && forceDrag) {//只要处于拉升状态，都不转发
+        if (getScrollY()!=0) {//只要处于拉升状态，都不转发
             return false;
         }
         if (moveDown && bounceHandler.canChildDrag(childContent)) {
@@ -211,7 +211,7 @@ public class BounceLayout extends FrameLayout {
         float scrollY = mYMove - currentY;
         float p = Math.abs(totalOffsetY / height);
         if (p == 1) {
-            p = 1 - Integer.MIN_VALUE;
+            p = 1 - Integer.MIN_VALUE;//保证永远不能拉到布局不可见的状态
         }
         scrollY = scrollY / (dampingCoefficient * (1.0f/(1 - p)));
         float offsetY = totalOffsetY + scrollY;
@@ -254,11 +254,11 @@ public class BounceLayout extends FrameLayout {
             return;
         }
         //需要停止回弹，开始加载。。。
-        if (bounceStopped) {
-            Log.i(TAG, "computeScroll: ===============");
-            bounceStopped = false;
-            return;
-        }
+//        if (bounceStopped) {
+//            Log.i(TAG, "computeScroll: ===============");
+//            bounceStopped = false;
+//            return;
+//        }
         if (mScroller.computeScrollOffset()) {
             totalOffsetY = -mScroller.getCurrY();
             scrollTo(0, mScroller.getCurrY());
@@ -270,8 +270,8 @@ public class BounceLayout extends FrameLayout {
                         bounceCallBack.startRefresh();
                         forceDrag = true;
                         lockBoolean = true;
+//                        bounceStopped = true;
                     }
-                    bounceStopped = true;
                 }
             }
             if (footerView!=null) {
@@ -281,9 +281,11 @@ public class BounceLayout extends FrameLayout {
                         bounceCallBack.startLoadingMore();
                         forceDrag = true;
                         lockBoolean = true;
+//                        bounceStopped = true;
                     }
-                    bounceStopped = true;
                 }
+            }
+            if (totalOffsetY == 0) {
             }
 
         }
@@ -322,33 +324,37 @@ public class BounceLayout extends FrameLayout {
      * 完成加载
      */
     public void setRefreshCompleted(){
-        bounceStopped = false;
+//        bounceStopped = false;
         headerView.refreshCompleted();
         lockBoolean = false;
+        forceDrag = false;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mScroller.startScroll(0,getScrollY(),0,-getScrollY(),3000);
-                forceDrag = false;
+                mScroller.startScroll(0,getScrollY(),0,-getScrollY(),300);
                 invalidate();
             }
-        },8000);
+        },800);
     }
 
     /**
      * 完成加载更多
      */
     public void setLoadingMoreCompleted(){
-        bounceStopped = false;
+//        bounceStopped = false;
         footerView.LoadingCompleted();
         lockBoolean = false;
+        forceDrag = false;
         new Handler().postDelayed(new Runnable() {
             @Override
-            public void run() {
-                mScroller.startScroll(0,getScrollY(),0,-getScrollY(),3000);
-                forceDrag = false;
+            public void run() {//一个定时器，消息池管理等待事件
+                mScroller.startScroll(0,getScrollY(),0,-getScrollY(),300);
                 invalidate();
             }
-        },8000);
+        },800);
+    }
+
+    public void setDampingCoefficient(float dampingCoefficient) {
+        this.dampingCoefficient = dampingCoefficient;
     }
 }

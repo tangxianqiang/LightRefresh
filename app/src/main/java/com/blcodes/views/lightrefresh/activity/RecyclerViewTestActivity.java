@@ -18,6 +18,10 @@ import com.blcodes.views.refresh.header.DefaultHeader;
 
 import java.util.ArrayList;
 
+/**
+ * 列表添加刷新和加载更多
+ */
+
 public class RecyclerViewTestActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +33,16 @@ public class RecyclerViewTestActivity extends Activity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         final RVTestAdapter adapter = new RVTestAdapter(this);
         recyclerView.setAdapter(adapter);
-        bounceLayout.setBounceHandler(new NormalBounceHandler(),recyclerView);
-        bounceLayout.setEventForwardingHelper(new EventForwardingHelper() {
+        bounceLayout.setBounceHandler(new NormalBounceHandler(),recyclerView);//设置滚动冲突的控制类
+        bounceLayout.setEventForwardingHelper(new EventForwardingHelper() {//自定义事件分发处理
             @Override
             public boolean notForwarding(float downX, float downY, float moveX, float moveY) {
                 return true;
             }
         });
-        bounceLayout.setHeaderView(new DefaultHeader(this),rootView);
+        bounceLayout.setHeaderView(new DefaultHeader(this),rootView);//设置刷新头，null意味着没有刷新头，不调用该函数意为着空
         bounceLayout.setFooterView(new DefaultFooter(this),rootView);
-        bounceLayout.setBounceCallBack(new BounceCallBack() {
+        bounceLayout.setBounceCallBack(new BounceCallBack() {//刷新回调
             @Override
             public void startRefresh() {
                 new Handler().postDelayed(new Runnable() {

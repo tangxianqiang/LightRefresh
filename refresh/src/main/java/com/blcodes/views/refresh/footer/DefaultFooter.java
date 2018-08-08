@@ -16,12 +16,21 @@ import android.widget.TextView;
 
 import com.blcodes.views.refresh.R;
 
+/**
+ * 默认的加载头
+ */
+
 public class DefaultFooter extends BaseFooterView {
     private static final String TAG = "DefaultFooter";
+    /*当前状态*/
     private int status;
+    /*加载头的高度*/
     private int childHeight;
+    /*布局偏移量*/
     private float totalOffset;
+    /*设备上下文*/
     private Context mContext;
+    /*---------头布局中的view-------------*/
     private ProgressBar pbFooterTip;
     private TextView tvFooterTip;
     private ImageView ivFooterTip;

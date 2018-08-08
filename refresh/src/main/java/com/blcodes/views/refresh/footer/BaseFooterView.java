@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 /**
+ * 加载更多的基类，继承该类可以实现不同样式的加载头，但是基本的加载过程不变，都是：
+ *      上拉--释放--加载（悬停）--回弹结束
  * 加载更多的布局，一共有4种状态：
  *      a、加载更多
  *      b、释放加载更多

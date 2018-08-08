@@ -11,7 +11,6 @@ import com.blcodes.views.refresh.BounceCallBack;
 import com.blcodes.views.refresh.BounceLayout;
 import com.blcodes.views.refresh.EventForwardingHelper;
 import com.blcodes.views.refresh.NormalBounceHandler;
-import com.blcodes.views.refresh.footer.DefaultFooter;
 import com.blcodes.views.refresh.header.DefaultHeader;
 
 public class ScrollerViewTestActivity extends Activity {

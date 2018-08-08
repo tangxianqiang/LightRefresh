@@ -3,7 +3,7 @@ package com.blcodes.views.refresh;
 import android.view.View;
 
 /**
- * 处理再竖直方向的滑动冲突
+ * 处理在竖直方向的滑动冲突
  */
 
 public interface BounceHandler {

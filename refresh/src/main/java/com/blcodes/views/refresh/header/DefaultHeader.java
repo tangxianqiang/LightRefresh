@@ -16,12 +16,20 @@ import android.widget.TextView;
 
 import com.blcodes.views.refresh.R;
 
+/**
+ * 默认刷新头，可以直接复制更改头中视图类容
+ */
+
 public class DefaultHeader extends BaseHeaderView {
     private static final String TAG = "DefaultHeader";
+    /*刷新头的状态*/
     private int status;
+    /*头布局高度*/
     private int childHeight;
+    /*布局偏移量*/
     private float totalOffset;
     private Context mContext;
+    /*-----------刷新头布局视图内容---------------*/
     private TextView tvHeaderTip;
     private ImageView ivHeaderTip;
     private ProgressBar pbRefreshing;
@@ -91,7 +99,7 @@ public class DefaultHeader extends BaseHeaderView {
 
     @Override
     public boolean doRefresh() {
-        if (status == HEADER_REFRESHING && totalOffset == childHeight) {//正在刷新，并且偏移量==刷新头高度
+        if (status == HEADER_REFRESHING && totalOffset == childHeight) {//正在刷新，并且偏移量==刷新头高度才认为刷新
             return true;
         }
         return false;
@@ -133,6 +141,10 @@ public class DefaultHeader extends BaseHeaderView {
     public int getHeaderHeight() {
         return childHeight;
     }
+
+    /**
+     * 从0度旋转到180度的动画
+     */
     private void startRotateAnimDown(){
         RotateAnimation animation = new RotateAnimation(0
                 , 180
@@ -144,6 +156,10 @@ public class DefaultHeader extends BaseHeaderView {
         animation.setFillAfter(true);//保持最后的状态
         ivHeaderTip.startAnimation(animation);
     }
+
+    /**
+     * 从180度旋转到0度的动画
+     */
     private void startRotateAnimUp(){
         RotateAnimation animation = new RotateAnimation(180
                 , 0

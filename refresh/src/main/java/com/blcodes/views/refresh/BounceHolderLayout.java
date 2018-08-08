@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+/**
+ * @deprecated
+ */
+
 public class BounceHolderLayout extends FrameLayout {
     private BounceLayout bounceBody;
     public BounceHolderLayout(@NonNull Context context) {
