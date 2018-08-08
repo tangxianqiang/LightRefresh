@@ -47,5 +47,7 @@ public abstract class BaseHeaderView extends FrameLayout{
     public abstract void refreshCompleted();
     /*获得头高度*/
     public abstract int getHeaderHeight();
+    /*自动加载*/
+    public abstract void autoRefresh();
 
 }

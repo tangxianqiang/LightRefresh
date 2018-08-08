@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
 
@@ -76,6 +78,8 @@ public class BounceLayout extends FrameLayout {
 //    private boolean bounceStopped;
     /*刷新锁,防止同时回调多个刷新操作*/
     private volatile boolean lockBoolean;
+    /*是否固定回弹布局*/
+    private boolean disallowBounce;
 
 
     public BounceLayout(@NonNull Context context) {
@@ -92,7 +96,7 @@ public class BounceLayout extends FrameLayout {
     }
 
     private void init(Context context,  AttributeSet attrs, int defStyleAttr){
-        //初始化滚动实例
+        //初始化滚动实例,使用默认的变速插值器
         mScroller = new Scroller(context);
         ViewConfiguration configuration = ViewConfiguration.get(context);
         // 获取TouchSlop值
@@ -220,6 +224,9 @@ public class BounceLayout extends FrameLayout {
         }else {
             totalOffsetY = offsetY;
         }
+        if (disallowBounce) {//不允许拉动
+            totalOffsetY = 0;
+        }
         scrollTo(0, (int) -totalOffsetY);
         pointerChange = false;
         //在布局拉动的时候一定要将拉动的值传到header
@@ -284,8 +291,6 @@ public class BounceLayout extends FrameLayout {
 //                        bounceStopped = true;
                     }
                 }
-            }
-            if (totalOffsetY == 0) {
             }
 
         }
@@ -356,5 +361,30 @@ public class BounceLayout extends FrameLayout {
 
     public void setDampingCoefficient(float dampingCoefficient) {
         this.dampingCoefficient = dampingCoefficient;
+    }
+
+    /**
+     * 自动刷新
+     */
+    public void autoRefresh(){
+        if (headerView == null) {
+            return;
+        }
+        headerView.autoRefresh();
+        if (!disallowBounce) {//固定回弹布局
+            mScroller.startScroll(0,0,0,- headerView.getHeaderHeight(),0);
+            invalidate();
+        }else{
+            if (!lockBoolean) {
+                bounceCallBack.startRefresh();
+                forceDrag = true;
+                lockBoolean = true;
+//                        bounceStopped = true;
+            }
+        }
+    }
+
+    public void setDisallowBounce(boolean disallowBounce) {
+        this.disallowBounce = disallowBounce;
     }
 }

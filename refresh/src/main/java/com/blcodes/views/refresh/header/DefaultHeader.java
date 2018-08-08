@@ -142,6 +142,15 @@ public class DefaultHeader extends BaseHeaderView {
         return childHeight;
     }
 
+    @Override
+    public void autoRefresh() {
+        status = HEADER_REFRESHING;
+        ivHeaderTip.clearAnimation();
+        ivHeaderTip.setVisibility(GONE);
+        tvHeaderTip.setText(mContext.getResources().getString(R.string.refreshing));
+        pbRefreshing.setVisibility(VISIBLE);
+    }
+
     /**
      * 从0度旋转到180度的动画
      */

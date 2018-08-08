@@ -49,4 +49,9 @@ public class BezierWaterHeader extends BaseHeaderView {
     public int getHeaderHeight() {
         return 0;
     }
+
+    @Override
+    public void autoRefresh() {
+
+    }
 }
