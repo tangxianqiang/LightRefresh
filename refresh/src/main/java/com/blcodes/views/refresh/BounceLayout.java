@@ -169,7 +169,10 @@ public class BounceLayout extends FrameLayout {
                 //再抬起手指时都需要判断是否显示footer、header(之前footer、header可能被拉出来需要刷新或者加载更多)
                 if(headerView != null && headerView.checkRefresh()){
                     if (disallowBounce) {
-                        bounceCallBack.startRefresh();
+                        if (!lockBoolean) {
+                            bounceCallBack.startRefresh();
+                            lockBoolean = true;
+                        }
                     }else{
                         mScroller.startScroll(0,getScrollY(),0,-(getScrollY() + headerView.getHeaderHeight()),500);
                         invalidate();
@@ -178,7 +181,10 @@ public class BounceLayout extends FrameLayout {
                 }
                 if(footerView!=null && footerView.checkLoading()){
                     if (disallowBounce) {
-                        bounceCallBack.startLoadingMore();
+                        if (!lockBoolean) {
+                            bounceCallBack.startLoadingMore();
+                            lockBoolean = true;
+                        }
                     }else{
                         mScroller.startScroll(0,getScrollY(),0,-(getScrollY() - footerView.getFooterHeight()),500);
                         invalidate();
@@ -209,6 +215,9 @@ public class BounceLayout extends FrameLayout {
             return false;
         }
         if (currentY == movingY) {//换手
+            return false;
+        }
+        if (disallowBounce && totalOffsetY!=0) {//bounceLayout固定不动，并且header被拉出来
             return false;
         }
         return true;//默认都是要转发给孩子的
@@ -346,13 +355,18 @@ public class BounceLayout extends FrameLayout {
         headerView.refreshCompleted();
         lockBoolean = false;
         forceDrag = false;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mScroller.startScroll(0,getScrollY(),0,-getScrollY(),300);
-                invalidate();
-            }
-        },800);
+        if(disallowBounce){
+            totalOffsetY = 0;
+            headerView.handleDrag(0);
+        }else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mScroller.startScroll(0,getScrollY(),0,-getScrollY(),300);
+                    invalidate();
+                }
+            },800);
+        };
     }
 
     /**
@@ -363,13 +377,19 @@ public class BounceLayout extends FrameLayout {
         footerView.LoadingCompleted();
         lockBoolean = false;
         forceDrag = false;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {//一个定时器，消息池管理等待事件
-                mScroller.startScroll(0,getScrollY(),0,-getScrollY(),300);
-                invalidate();
-            }
-        },800);
+        if(disallowBounce){
+            totalOffsetY = 0;
+            footerView.handlePull(0);
+        }else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {//一个定时器，消息池管理等待事件
+                    mScroller.startScroll(0,getScrollY(),0,-getScrollY(),300);
+                    invalidate();
+                }
+            },800);
+        }
+
     }
 
     public void setDampingCoefficient(float dampingCoefficient) {
