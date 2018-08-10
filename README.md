@@ -10,6 +10,13 @@ importantly，this refresh layout is based on a bounce layout.so it is better a 
 * 5.support Multi - finger touch , and there is no layout jitter in frequent pulling.
 * 6.support auto refresh.
 * 7.support fixed refresh layout
+## Preview
+normal view:<br/>
+![](https://github.com/BLCodes/LightRefresh/blob/master/gif/view.gif)<br/>
+RecyclerView:<br/>
+![](https://github.com/BLCodes/LightRefresh/blob/master/gif/list.gif)<br/>
+`custom header`贝塞尔水滴样式<br/>
+![](https://github.com/BLCodes/LightRefresh/blob/master/gif/water.gif)
 ## How to use
 1.add dependencies:<br/>
 Add it in your root build.gradle at the end of repositories:
@@ -71,7 +78,7 @@ bounceLayout.setEventForwardingHelper(new EventForwardingHelper() {
             }
         });
 ```
-5.add refresh and load more call back:
+5.add refresh and load more call back: set`bounceLayout.setRefreshCompleted()` and `bounceLayout.setLoadingMoreCompleted()` is very important!!!
 ```
 bounceLayout.setBounceCallBack(new BounceCallBack() {
             @Override
