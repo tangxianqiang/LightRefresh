@@ -55,9 +55,9 @@ public class DefaultHeader extends BaseHeaderView {
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
                 ,childHeight);
         addView(view,lp);
-        tvHeaderTip = view.findViewById(R.id.tv_tip);
-        pbRefreshing = view.findViewById(R.id.pb_refreshing);
-        ivHeaderTip = view.findViewById(R.id.iv_tip);
+        tvHeaderTip =(TextView) view.findViewById(R.id.tv_tip);
+        pbRefreshing = (ProgressBar) view.findViewById(R.id.pb_refreshing);
+        ivHeaderTip = (ImageView) view.findViewById(R.id.iv_tip);
     }
 
     /**

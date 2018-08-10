@@ -58,9 +58,9 @@ public class DefaultFooter extends BaseFooterView {
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
                 ,childHeight);
         addView(view,lp);
-        pbFooterTip = view.findViewById(R.id.pb_loading);
-        ivFooterTip = view.findViewById(R.id.iv_tip);
-        tvFooterTip = view.findViewById(R.id.tv_tip);
+        pbFooterTip = (ProgressBar) view.findViewById(R.id.pb_loading);
+        ivFooterTip = (ImageView) view.findViewById(R.id.iv_tip);
+        tvFooterTip = (TextView) view.findViewById(R.id.tv_tip);
     }
 
     @Override
