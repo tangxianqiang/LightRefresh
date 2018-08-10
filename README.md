@@ -15,7 +15,7 @@ normal view:<br/>
 ![](https://github.com/BLCodes/LightRefresh/blob/master/gif/view.gif)<br/>
 RecyclerView:<br/>
 ![](https://github.com/BLCodes/LightRefresh/blob/master/gif/list.gif)<br/>
-`custom header`贝塞尔水滴样式<br/>
+`custom header`bezier water style header<br/>
 ![](https://github.com/BLCodes/LightRefresh/blob/master/gif/water.gif)
 ## How to use
 1.add dependencies:<br/>
