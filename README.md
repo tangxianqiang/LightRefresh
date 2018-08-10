@@ -1,6 +1,7 @@
 # LightRefresh
 A view which can refresh and load more.It is easy to customizable(see [header](https://github.com/BLCodes/LightRefresh/tree/master/header)).It's a simple refresh and load more lib.
 It supports damping rebound and multi-finger touch.It is a little bit difficult to use but more easier to to customize.
+importantly，this refresh layout is based on a bounce layout.so it is better a bounce ui in your design rather than a fixed layout!
 ## function
 * 1.only keep header or footer or none of them.
 * 2.support most common views（RecyclerView、ListView、WebView、ScrollView and so on）.
@@ -10,7 +11,23 @@ It supports damping rebound and multi-finger touch.It is a little bit difficult 
 * 6.support auto refresh.
 * 7.support fixed refresh layout
 ## How to use
-1.use a framlayout to wrap the BounceLayout and header or footer,eg:
+1.add dependencies:<br/>
+Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}   
+```
+Add the dependency:
+```
+dependencies {
+	        implementation 'com.github.BLCodes:LightRefresh:1.0.3-beta'
+	}
+```
+2.use a framlayout to wrap the BounceLayout and header or footer,eg:
     
  ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -35,14 +52,14 @@ It supports damping rebound and multi-finger touch.It is a little bit difficult 
     </com.blcodes.views.refresh.BounceLayout>
 </FrameLayout> 
 ```
-2.add header or footer and set the Boolean value to make the view not bounce:
+3.add header or footer and set the Boolean value to make the view not bounce:
 ```
 bounceLayout.setDisallowBounce(true);
 FrameLayout rootView = findViewById(R.id.fl_root);
 bounceLayout.setHeaderView(new DefaultHeader(this),rootView);//if HeaderView is null,it just bounce.
 bounceLayout.setFooterView(new DefaultFooter(this),rootView);
 ```
-3.set scroll BounceHandler and EventForwardingHelper call back:
+4.set scroll BounceHandler and EventForwardingHelper call back:
 ```
 RecyclerView recyclerView = findViewById(R.id.rv_test);
 bounceLayout.setBounceHandler(new NormalBounceHandler(),recyclerView);
@@ -54,7 +71,7 @@ bounceLayout.setEventForwardingHelper(new EventForwardingHelper() {
             }
         });
 ```
-4.add refresh and load more call back:
+5.add refresh and load more call back:
 ```
 bounceLayout.setBounceCallBack(new BounceCallBack() {
             @Override
@@ -68,7 +85,7 @@ bounceLayout.setBounceCallBack(new BounceCallBack() {
             }
         });
 ```
-5.set auto refresh or not:
+6.set auto refresh or not:
 ```
 bounceLayout.autoRefresh()
 ```
