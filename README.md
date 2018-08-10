@@ -27,7 +27,7 @@ dependencies {
 	        implementation 'com.github.BLCodes:LightRefresh:1.0.3-beta'
 	}
 ```
-2.use a framlayout to wrap the BounceLayout and header or footer,eg:
+2.use a framlayout(must!!!) to wrap the BounceLayout and header or footer,eg:
     
  ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -52,9 +52,9 @@ dependencies {
     </com.blcodes.views.refresh.BounceLayout>
 </FrameLayout> 
 ```
-3.add header or footer and set the Boolean value to make the view not bounce:
+3.add header or footer and set the Boolean value to make the view not bounce(if you need):
 ```
-bounceLayout.setDisallowBounce(true);
+//bounceLayout.setDisallowBounce(true);//disallow the BounceLayout bounce!!!!
 FrameLayout rootView = findViewById(R.id.fl_root);
 bounceLayout.setHeaderView(new DefaultHeader(this),rootView);//if HeaderView is null,it just bounce.
 bounceLayout.setFooterView(new DefaultFooter(this),rootView);
@@ -76,7 +76,19 @@ bounceLayout.setEventForwardingHelper(new EventForwardingHelper() {
 bounceLayout.setBounceCallBack(new BounceCallBack() {
             @Override
             public void startRefresh() {
-
+		Log.i(TAG, "run: 开始刷新");
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArrayList<String> data = new ArrayList<>();
+                        for (int i = 0; i < 16; i++) {
+                            data.add("新文本"+i);
+                        }
+                        adapter.setData(data);
+                        bounceLayout.setRefreshCompleted();
+                        Log.i(TAG, "run: 结束刷新");
+                    }
+                },2000);
             }
 
             @Override
@@ -85,7 +97,7 @@ bounceLayout.setBounceCallBack(new BounceCallBack() {
             }
         });
 ```
-6.set auto refresh or not:
+6.set auto refresh or not(if you need):
 ```
 bounceLayout.autoRefresh()
 ```
