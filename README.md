@@ -31,7 +31,7 @@ allprojects {
 Add the dependency:
 ```
 dependencies {
-	        implementation 'com.github.BLCodes:LightRefresh:1.0.3-beta'
+	        implementation 'com.github.BLCodes:LightRefresh:1.0.3-beta-2'
 	}
 ```
 2.use a framlayout(must!!!) to wrap the BounceLayout and header or footer,eg:
