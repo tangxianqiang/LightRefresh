@@ -3,4 +3,5 @@
     <dimen name="bezier_water_height">54dp</dimen>
     <dimen name="default_footer">48dp</dimen>
     <dimen name="water_radius">26dp</dimen>
+	<dimen name="frame_header_height">72dp</dimen>
 </resources>
