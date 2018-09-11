@@ -197,6 +197,20 @@ public class BounceLayout extends FrameLayout {
         }
         return super.dispatchTouchEvent(ev);
     }
+    
+     @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                if(totalOffsetY != 0){ //当前是处于拉出状态
+                    return true;
+                }else{
+                    return  super.onInterceptTouchEvent(ev);
+                }
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
 
 
     /**
