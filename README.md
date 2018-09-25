@@ -2,6 +2,10 @@
 A view which can refresh and load more.It is easy to customizable(see [header](https://github.com/BLCodes/LightRefresh/tree/master/header)).It's a simple refresh and load more lib.
 It supports damping rebound and multi-finger touch.It is a little bit difficult to use but more easier to to customize.
 importantly，this refresh layout is based on a bounce layout.so it is better a bounce ui in your design rather than a fixed layout!
+More importent,BounceLayout is a bounce view.So you You'd better use a BounceLayout rather than the fixed one:
+```
+bounceLayout.setDisallowBounce(true)//disallow the BounceLayout bounce!!!!
+```
 ## function
 * 1.only keep header or footer or none of them.
 * 2.support most common views（RecyclerView、ListView、WebView、ScrollView and so on）.
@@ -31,7 +35,7 @@ allprojects {
 Add the dependency:
 ```
 dependencies {
-	        implementation 'com.github.BLCodes:LightRefresh:1.0.3-beta-3'
+	        implementation 'com.github.BLCodes:LightRefresh:1.0.3-beta-4'
 	}
 ```
 2.use a framlayout(must!!!) to wrap the BounceLayout and header or footer,eg:
