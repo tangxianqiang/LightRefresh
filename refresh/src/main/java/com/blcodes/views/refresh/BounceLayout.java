@@ -77,7 +77,7 @@ public class BounceLayout extends FrameLayout {
     /*是否暂停回弹*/
 //    private boolean bounceStopped;
     /*刷新锁,防止同时回调多个刷新操作*/
-    private volatile boolean lockBoolean;
+    private boolean lockBoolean;
     /*是否固定回弹布局*/
     private boolean disallowBounce;
 
