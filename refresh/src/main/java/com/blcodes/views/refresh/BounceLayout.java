@@ -434,8 +434,4 @@ public class BounceLayout extends FrameLayout {
     public void setDisallowBounce(boolean disallowBounce) {
         this.disallowBounce = disallowBounce;
     }
-    public float getTotalOffsetY() {
-        return totalOffsetY;
-    }
-
 }
