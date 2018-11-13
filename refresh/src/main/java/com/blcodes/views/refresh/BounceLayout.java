@@ -80,6 +80,7 @@ public class BounceLayout extends FrameLayout {
     private boolean lockBoolean;
     /*是否固定回弹布局*/
     private boolean disallowBounce;
+    private boolean dispathAble = true;
 
 
     public BounceLayout(@NonNull Context context) {
@@ -158,7 +159,7 @@ public class BounceLayout extends FrameLayout {
                         return true;
                     }
                 }else{//父亲转发事件到孩子
-                    alwaysDispatch = true;
+                    alwaysDispatch = dispathAble;
                     currentY = mYMove;
                     return super.dispatchTouchEvent(ev);
                 }
@@ -433,5 +434,8 @@ public class BounceLayout extends FrameLayout {
 
     public void setDisallowBounce(boolean disallowBounce) {
         this.disallowBounce = disallowBounce;
+    }
+     public void serDispatchAble(boolean able){
+        this.dispathAble = able;
     }
 }
