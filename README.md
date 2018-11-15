@@ -112,6 +112,8 @@ bounceLayout.setBounceCallBack(new BounceCallBack() {
 ```
 bounceLayout.autoRefresh()
 ```
+7.contact us:</br>
+qq:2927001935
 # LISENCE
 ```
 MIT License
